@@ -8,7 +8,7 @@ It also includes an AI agent that can decide whether to retrieve information fro
 
 ---
 
-## 🚀 Features
+🚀 Features
 
 - 📄 Upload PDF documents
 - 🔍 RAG-based document search
