@@ -82,7 +82,7 @@ export default function App() {
       <nav className="topbar">
         <a className="brand" href="/" aria-label="DocMind AI home">
           <span className="brand-mark"><BrainCircuit size={21} /></span>
-          <span>DocMind <b>AI</b></span>
+          <span>G-Mind <b>AI</b></span>
         </a>
         <div className="topbar-right"><span className="online-dot" /> Your private research workspace</div>
       </nav>
@@ -117,7 +117,7 @@ export default function App() {
           />
           {error && <div className="error-banner" role="alert">{error}</div>}
         </div>
-        <footer className="footer">Built for clearer thinking <span>·</span> Powered by AI</footer>
+        <footer className="footer">Built by Gaurav <span>·</span> Powered by AI</footer>
       </div>
     </main>
   );
