@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docmind-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: docmind-frontend
+  template:
+    metadata:
+      labels:
+        app: docmind-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: docmind-ai-frontend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 3
+            periodSeconds: 10

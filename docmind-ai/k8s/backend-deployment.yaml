@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docmind-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: docmind-backend
+  template:
+    metadata:
+      labels:
+        app: docmind-backend
+    spec:
+      containers:
+        - name: backend
+          image: docmind-ai-backend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          env:
+            - name: GOOGLE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: docmind-secrets
+                  key: google-api-key
+            - name: LLM_MODEL
+              value: gemini-3.7-flash
+            - name: EMBEDDING_MODEL
+              value: gemini-embedding-2-preview
+            - name: CHROMA_DIR
+              value: /app/data/chroma
+          volumeMounts:
+            - name: docmind-data
+              mountPath: /app/data
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+      volumes:
+        - name: docmind-data
+          emptyDir: {}
